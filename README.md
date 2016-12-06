@@ -10,6 +10,7 @@ It's a simple Django website that contains only two pages:
 ## Installation
 
 * Django==1.7.11
+* django_markdown==0.8.4
 
 ## Note
 
