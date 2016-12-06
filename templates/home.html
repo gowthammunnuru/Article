@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load django_markdown %}
+{% block sidebar_blog %}
+{% for object in object_list%}
+<div class="post">    
+    <a href="{% url "entry_detail" slug=object.slug %}"><img src="{{object.image1.url}}" width="200px" height="150px"/></a>
+    <br>
+    <a href="{% url "entry_detail" slug=object.slug %}">{{ object.title }}</a>
+</div>
+{% endfor %}
+{% endblock %}
+{% load shuffle %}
+{% block blog_entries %}
+{% for object in object_list|shuffle %}
+<div class="post">
+    <h2>
+        <a href="{% url "entry_detail" slug=object.slug %}">{{ object.title }}</a>
+    </h2>
+    <p class="meta">
+        {{ object.created }} |
+        Created By {{ object.author }} |
+        Category {{ object.category}}
+    </p>
+	  <img src="{{object.image1.url}}" width="300px" height="300px"/>
+    {{ object.body|markdown }}	 
+</div>
+{% endfor %}
+{% endblock %}

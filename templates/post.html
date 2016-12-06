@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load django_markdown %}
+{% block blog_entries %}
+<div class="post">
+    <h2>
+        <a href="{% url "entry_detail" slug=object.slug %}">{{ object.title }}</a>
+    </h2>
+    <p class="meta">
+        {{ object.created }} |
+        Created By {{ object.author }} |
+        Category {{ object.category}}
+    </p>
+    <img src="{{object.image1.url}}" width="300px" height="300px"/>
+    {{ object.bodyfull|markdown }}
+</div>
+{% endblock %}
